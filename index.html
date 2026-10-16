@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<style>
+:root{color-scheme:dark;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{background:#05070b;-webkit-text-size-adjust:100%}
+body{margin:0}
+[hidden]{display:none!important}
+</style>
+<title>The Psycho's Message</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Reenie+Beanie&family=Special+Elite&display=swap">
+<style>
+/* Layout: one dark column like a note slid under a door. Teacher's handwriting dominates, scratched words hide in the dark and show only under the viewer's light. */
+:root {
+  --void: #05070b;
+  --wall: #0e141f;
+  --bone: #e8ecf2;
+  --mute: #7f8da6;
+  --blood: #c4231f;
+  --blood-text: #ff6259;
+  --exit: #46e08a;
+  --paper: #d8dce2;
+  --paper-ink: #171d2a;
+  --f-hand: 'Reenie Beanie', 'Segoe Print', cursive;
+  --f-type: 'Special Elite', 'Courier New', monospace;
+  --f-label: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --lx: -400px;
+  --ly: -400px;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--void);
+  background-image:
+    radial-gradient(90% 55% at 50% 0%, #131d30 0%, rgba(5,7,11,0) 70%),
+    radial-gradient(70% 40% at 50% 100%, #1f0b0e 0%, rgba(5,7,11,0) 75%);
+  background-attachment: fixed;
+  color: var(--bone);
+  font-family: var(--f-type);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 22px 64px;
+  overflow-x: hidden;
+}
+
+/* Vignette */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(120% 100% at 50% 45%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.65) 100%);
+  z-index: 5;
+}
+
+.wrap { position: relative; z-index: 2; max-width: 640px; margin: 0 auto; }
+
+.label {
+  font-family: var(--f-label);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 13px;
+}
+
+/* Hidden writing revealed by the light */
+.scratches {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(circle 120px at var(--lx) var(--ly), #000 0%, rgba(0,0,0,0.6) 45%, transparent 100%);
+  mask-image: radial-gradient(circle 120px at var(--lx) var(--ly), #000 0%, rgba(0,0,0,0.6) 45%, transparent 100%);
+}
+.scratches span {
+  position: absolute;
+  font-family: var(--f-hand);
+  color: var(--blood-text);
+  font-size: clamp(34px, 9vw, 58px);
+  line-height: 1;
+  white-space: nowrap;
+}
+.scratches .s1 { left: 6%; top: 22%; transform: rotate(-7deg); }
+.scratches .s2 { right: 5%; top: 40%; transform: rotate(5deg); }
+.scratches .s3 { left: 10%; top: 62%; transform: rotate(-3deg); }
+.scratches .s4 { right: 8%; top: 78%; transform: rotate(8deg); }
+.scratches .s5 { left: 30%; top: 91%; transform: rotate(-5deg); }
+
+/* Top bar */
+.top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+.school { color: var(--mute); margin: 6px 0 0; min-width: 0; }
+
+.exit {
+  flex: none;
+  display: inline-block;
+  transform: rotate(-9deg);
+  transform-origin: 88% 0;
+  padding: 3px 12px 1px;
+  background: #0a2416;
+  color: var(--exit);
+  border: 2px solid var(--exit);
+  font-family: var(--f-label);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.2em;
+  text-shadow: 0 0 8px var(--exit);
+  box-shadow: 0 0 22px rgba(70,224,138,0.5), inset 0 0 10px rgba(70,224,138,0.25);
+  animation: exitflick 9s steps(1, end) infinite;
+}
+@keyframes exitflick {
+  0%, 20%, 22%, 61%, 62.5%, 100% { opacity: 1; }
+  21%, 62% { opacity: 0.3; }
+}
+
+/* Envelope details */
+.meta {
+  margin: 0 0 40px;
+  display: grid;
+  gap: 2px;
+  font-size: 14px;
+  color: var(--mute);
+}
+.meta div { display: flex; gap: 10px; flex-wrap: wrap; }
+.meta dt { font-family: var(--f-label); font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; font-size: 13px; padding-top: 1px; min-width: 64px; }
+.meta dd { margin: 0; min-width: 0; overflow-wrap: anywhere; color: var(--bone); }
+.meta .late { color: var(--blood-text); }
+
+/* The message */
+.line {
+  font-family: var(--f-hand);
+  font-size: clamp(40px, 11.5vw, 66px);
+  line-height: 1.02;
+  margin: 0 0 30px;
+  color: var(--bone);
+  text-wrap: balance;
+}
+.line.second { color: var(--blood-text); text-shadow: 0 0 18px rgba(255,98,89,0.35); }
+.line .red { color: var(--blood-text); }
+.line .scrawl {
+  text-decoration: underline wavy var(--blood);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 8px;
+}
+
+.line.glitch { animation: glitch 0.24s steps(2, end) 1; }
+@keyframes glitch {
+  0%   { transform: translate(0); text-shadow: none; }
+  25%  { transform: translate(-3px, 1px); text-shadow: 4px 0 #ff6259, -4px 0 #5ab0ff; }
+  55%  { transform: translate(3px, -1px); text-shadow: -4px 0 #ff6259, 4px 0 #5ab0ff; }
+  100% { transform: translate(0); text-shadow: none; }
+}
+
+/* Slow arrival, only when JS adds .arming */
+.arming .line,
+.arming .act {
+  opacity: 0;
+  filter: blur(7px);
+  transform: translateY(8px);
+  transition: opacity 1.7s ease, filter 1.7s ease, transform 1.7s ease;
+}
+.arming .line.in,
+.arming .act.in { opacity: 1; filter: none; transform: none; }
+
+.act { margin-top: 38px; display: grid; gap: 12px; justify-items: start; }
+.act small { color: var(--mute); font-size: 14px; }
+
+.accept {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  width: 100%;
+  max-width: 460px;
+  text-align: center;
+  padding: 18px 20px 15px;
+  background: var(--blood);
+  color: #fff;
+  font-family: var(--f-label);
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: 2px solid #ff3b32;
+  box-shadow: 0 0 0 0 rgba(255,59,50,0.55), 0 10px 30px rgba(0,0,0,0.6);
+  transition: background 0.2s, box-shadow 0.2s;
+  animation: beat 3.2s ease-in-out infinite;
+}
+.accept:hover { background: #d92a25; box-shadow: 0 0 26px 2px rgba(255,59,50,0.55), 0 10px 30px rgba(0,0,0,0.6); }
+.accept:focus-visible { outline: 3px solid var(--exit); outline-offset: 3px; }
+.accept[disabled] { cursor: default; animation: none; }
+@keyframes beat {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,59,50,0.0), 0 10px 30px rgba(0,0,0,0.6); }
+  50% { box-shadow: 0 0 22px 2px rgba(255,59,50,0.4), 0 10px 30px rgba(0,0,0,0.6); }
+}
+
+/* Blackout between steps */
+.dark {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+.dark.on { opacity: 1; pointer-events: all; }
+.dark::after {
+  content: attr(data-msg);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(86%, 440px);
+  text-align: center;
+  font-family: var(--f-hand);
+  font-size: clamp(30px, 8vw, 40px);
+  line-height: 1.1;
+  color: var(--blood-text);
+  opacity: 0;
+  transition: opacity 1s ease 0.5s;
+}
+.dark.on::after { opacity: 1; }
+
+/* Detention notice */
+.slip {
+  background: var(--paper);
+  color: var(--paper-ink);
+  padding: 24px 20px 26px;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.7);
+  transform: rotate(-0.6deg);
+  position: relative;
+}
+.slip h2 {
+  font-family: var(--f-label);
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0 0 6px;
+  outline: none;
+}
+.slip .sub { margin: 0 0 18px; font-size: 14px; opacity: 0.75; }
+.stamp {
+  position: absolute;
+  top: 16px;
+  right: 14px;
+  font-family: var(--f-label);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blood);
+  border: 3px solid var(--blood);
+  padding: 2px 9px 0;
+  transform: rotate(8deg);
+  opacity: 0.85;
+}
+.slip dl { margin: 0 0 18px; display: grid; gap: 10px; border-top: 1px dashed rgba(23,29,42,0.45); padding-top: 16px; }
+.slip dl div { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 10px; align-items: baseline; }
+.slip dt { font-family: var(--f-label); font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; font-size: 13px; opacity: 0.7; }
+.slip dd { margin: 0; overflow-wrap: anywhere; }
+.slip .warn {
+  font-family: var(--f-hand);
+  color: var(--blood);
+  font-size: clamp(30px, 8.5vw, 40px);
+  line-height: 1.05;
+  margin: 18px 0 8px;
+  transform: rotate(-1.5deg);
+}
+.slip .sign { font-family: var(--f-hand); font-size: 28px; margin: 0; text-align: right; }
+.slip .sign span { display: block; font-family: var(--f-label); font-weight: 600; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.6; }
+.register-block { margin: 34px 0 0; display: grid; gap: 10px; justify-items: start; }
+.onelast { font-family: var(--f-hand); font-size: clamp(38px, 11vw, 56px); line-height: 1; color: var(--blood-text); margin: 0; }
+.why { margin: 0; color: var(--bone); max-width: 44ch; }
+.register {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 460px;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 6px;
+  padding: 18px 20px 15px;
+  background: var(--blood);
+  color: #fff;
+  font-family: var(--f-label);
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: 2px solid #ff3b32;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+.register:hover { background: #d92a25; box-shadow: 0 0 26px 2px rgba(255,59,50,0.55), 0 10px 30px rgba(0,0,0,0.6); }
+.register:focus-visible { outline: 3px solid var(--exit); outline-offset: 3px; }
+.url { margin: 0; color: var(--mute); font-size: 13px; user-select: all; overflow-wrap: anywhere; }
+
+.see {
+  font-family: var(--f-hand);
+  font-size: clamp(34px, 10vw, 52px);
+  color: var(--bone);
+  margin: 34px 0 0;
+  text-align: center;
+  animation: slipin 1.2s ease 1.8s both;
+}
+
+.slip-in > * { animation: slipin 1s ease both; }
+.slip-in > *:nth-child(2) { animation-delay: 0.3s; }
+.slip-in > *:nth-child(3) { animation-delay: 0.6s; }
+.slip-in > *:nth-child(4) { animation-delay: 0.9s; }
+.slip-in > *:nth-child(5) { animation-delay: 1.4s; }
+@keyframes slipin { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+.foot { margin: 46px 0 0; color: var(--mute); font-size: 13px; text-align: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  .exit, .accept, .line.glitch, .slip-in > *, .see { animation: none; }
+  .arming .line, .arming .act { transition: none; }
+  .dark, .dark::after { transition: none; }
+}
+@media (max-width: 420px) {
+  .slip dl div { grid-template-columns: 92px minmax(0, 1fr); }
+  .accept { font-size: 21px; letter-spacing: 0.16em; }
+}
+</style>
+
+
+</head>
+<body>
+<div class="scratches" aria-hidden="true">
+  <span class="s1">LOOK CLOSER</span>
+  <span class="s2">SIT DOWN</span>
+  <span class="s3">YOU'RE LATE</span>
+  <span class="s4">NOBODY SPOKE UP</span>
+  <span class="s5">WHO'S NEXT?</span>
+</div>
+<div class="dark" id="dark" aria-hidden="true" data-msg=""></div>
+
+<div class="wrap">
+  <div class="top">
+    <p class="school label">SolBridge International School of Business</p>
+    <span class="exit" aria-hidden="true">EXIT</span>
+  </div>
+
+  <section id="message" aria-label="Message from The Psycho">
+    <dl class="meta">
+      <div><dt>From</dt><dd>The Psycho, Room 1001</dd></div>
+      <div><dt>To</dt><dd>You</dd></div>
+      <div><dt>Opened</dt><dd id="opened">just now</dd></div>
+      <div><dt>Status</dt><dd class="late">Late</dd></div>
+    </dl>
+
+    <p class="line first">So&hellip; you found the classroom.</p>
+    <p class="line second" id="second">Most students never make it to the final lesson.</p>
+    <p class="line third">On October 30, <span class="scrawl">Room 1001</span> will be waiting for you.</p>
+
+    <div class="act" id="act">
+      <button class="accept" id="accept" type="button">I accept the detention</button>
+      <small>Your signature is required.</small>
+    </div>
+  </section>
+
+
+  <section id="notice" hidden aria-label="Detention notice">
+    <div class="slip slip-in">
+      <span class="stamp">Issued</span>
+      <div>
+        <h2 id="notice-title">Detention Notice</h2>
+        <p class="sub">Issued by The Psycho. Non-negotiable.</p>
+      </div>
+      <dl>
+        <div><dt>Offence</dt><dd>Looking closer</dd></div>
+        <div><dt>Date</dt><dd>30 October 2026</dd></div>
+        <div><dt>Location</dt><dd>Classroom 1001 (SolBridge)</dd></div>
+        <div><dt>Duration</dt><dd>10 mins</dd></div>
+      </dl>
+      <div>
+        <p class="warn">Do not be late. The lesson will not wait.</p>
+        <p class="sign"><span>Signed</span>The Psycho</p>
+      </div>
+    </div>
+    <div class="register-block">
+      <p class="onelast">One last thing.</p>
+      <p class="why">Your detention only counts once your name is in the register.</p>
+      <a class="register" href="https://forms.gle/iCUDcmgh3gVzNczY8" target="_blank" rel="noopener noreferrer">Sign the register</a>
+      <p class="url">forms.gle/iCUDcmgh3gVzNczY8</p>
+    </div>
+    <p class="see">See you in class.</p>
+  </section>
+
+  <p class="foot label">A SolBridge Halloween workshop</p>
+</div>
+
+<script>
+(function () {
+  var reduce = false;
+  try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+
+  var root = document.documentElement;
+  var lines = document.querySelectorAll('.line');
+  var act = document.getElementById('act');
+  var second = document.getElementById('second');
+  var btn = document.getElementById('accept');
+  var dark = document.getElementById('dark');
+  var message = document.getElementById('message');
+  var notice = document.getElementById('notice');
+
+  /* Local time the note was opened */
+  try {
+    var t = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    document.getElementById('opened').textContent = t + '. Class began earlier.';
+  } catch (e) {}
+
+  /* Slow arrival of the three lines, then the button */
+  if (!reduce) {
+    document.body.classList.add('arming');
+    var times = [500, 2900, 5400];
+    for (var i = 0; i < lines.length; i++) {
+      (function (el, ms) { setTimeout(function () { el.classList.add('in'); }, ms); })(lines[i], times[i] || 5400);
+    }
+    setTimeout(function () { act.classList.add('in'); }, 7600);
+
+    /* A brief glitch on the second line, every so often */
+    (function schedule() {
+      setTimeout(function () {
+        if (!second.classList.contains('in')) { schedule(); return; }
+        second.classList.remove('glitch');
+        void second.offsetWidth;
+        second.classList.add('glitch');
+        schedule();
+      }, 6000 + Math.random() * 4000);
+    })();
+  }
+
+  /* Light that shows the scratched writing */
+  function setLight(x, y) {
+    root.style.setProperty('--lx', x + 'px');
+    root.style.setProperty('--ly', y + 'px');
+  }
+  var lastTouch = 0;
+  function follow(e) { lastTouch = Date.now(); setLight(e.clientX, e.clientY); }
+  window.addEventListener('pointermove', follow, { passive: true });
+  window.addEventListener('pointerdown', follow, { passive: true });
+
+  if (!reduce) {
+    var t0 = performance.now();
+    (function drift(now) {
+      if (Date.now() - lastTouch > 3500) {
+        var s = (now - t0) / 1000;
+        var w = window.innerWidth, h = window.innerHeight;
+        setLight(w * (0.5 + 0.38 * Math.sin(s * 0.45)), h * (0.5 + 0.36 * Math.sin(s * 0.31 + 1.3)));
+      }
+      requestAnimationFrame(drift);
+    })(t0);
+  }
+
+  function blackout(msg) {
+    dark.setAttribute('data-msg', msg || '');
+    dark.classList.add('on');
+  }
+  function lightsUp(delay) {
+    setTimeout(function () { dark.classList.remove('on'); }, delay);
+  }
+  function showNotice() {
+    message.hidden = true;
+    notice.hidden = false;
+    document.body.classList.remove('arming');
+    window.scrollTo(0, 0);
+    var h = document.getElementById('notice-title');
+    h.setAttribute('tabindex', '-1');
+    try { h.focus({ preventScroll: true }); } catch (e) { h.focus(); }
+  }
+
+  /* Accepting the detention issues the notice */
+  btn.addEventListener('click', function () {
+    if (btn.disabled) return;
+    btn.disabled = true;
+    if (reduce) { showNotice(); return; }
+    blackout('Filing your detention\u2026');
+    setTimeout(function () { showNotice(); lightsUp(600); }, 1500);
+  });
+})();
+</script>
+</body>
+</html>
